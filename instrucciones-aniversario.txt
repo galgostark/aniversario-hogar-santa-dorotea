@@ -1,0 +1,25 @@
+app web para aniversario 38 de la asociacion santa dortotrea
+
+app para mostrar imagenes del recuerdo, deben de ordenarse por categorias, debe ser facil de manejar desde una tv led con android tv, la idea es abrir la pagina en el navegador y usar un mouse para el recorrido del material
+
+facil de usar, es para gente con pocos conocimientos de informatica
+
+estara visible en reuniones de personas corroeno en un tv de meustra
+
+tengo material de fotos antiguas escaneadas, si que esta app se debe de centrar en las imagenes
+
+grupos sugeridos:
+
+	Hogar Santa dorotea inicios
+
+	hogar santa dorotea Teatros y danzas
+
+	Centro de Educacion Especial 50 años (la celebracion es por el aniversario del hogar santa dortotea, pero como el hogar trabaja directamente con el centro de educacion especail, ya que en el centro asisten a clases algunos chicos del hogar, se cree q debe de agregarse una seccion para esta celebrarion, asi q debe ser como como una parte de todo pero no la central)
+		contruccion de la escuela, video antiguo digitalizado
+		profesores de la escuela
+		actuaciones y teatros
+		alumnos
+
+	Voluntarios
+
+	Talleres
