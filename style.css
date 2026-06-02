@@ -576,41 +576,56 @@ button {
   box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
 }
 
-/* Pestañas de Subcategoría (Especial CEE 50 Años) */
+/* Pestañas de Subcategoría (Especial CEE 50 Años - Ubicado en Sidebar) */
 .subcategory-tabs {
-  padding: 15px 40px;
-  background-color: rgba(0, 0, 0, 0.15);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.05);
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  align-items: center;
+  display: none; /* Por defecto se oculta */
 }
 
 .subcategory-tabs.hide {
   display: none !important;
 }
 
-.tab-btn {
-  padding: 10px 22px;
-  border-radius: 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  background-color: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.05);
-  color: var(--color-text-sub);
-  white-space: nowrap;
+/* Estilos de subcategorías integradas en el Sidebar */
+.sidebar .subcategory-tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 10px 15px 10px 30px; /* Sangría a la izquierda para mostrar jerarquía */
+  background-color: rgba(0, 0, 0, 0.2);
+  border-bottom: none;
+  gap: 8px;
+  animation: slideDownMenu 0.3s ease-out;
 }
 
-.tab-btn:hover {
-  background-color: rgba(255,255,255,0.07);
+@keyframes slideDownMenu {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sidebar .subcategory-tabs .tab-btn {
+  width: 100%;
+  text-align: left;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--color-text-sub);
+  white-space: nowrap;
+  transition: var(--transition-smooth);
+}
+
+.sidebar .subcategory-tabs .tab-btn:hover {
+  background-color: rgba(212, 175, 55, 0.05);
   color: var(--color-text-cream);
 }
 
-.tab-btn.active {
-  background-color: var(--color-gold-dark);
-  color: var(--bg-darkest);
+.sidebar .subcategory-tabs .tab-btn.active {
+  background-color: rgba(212, 175, 55, 0.12);
+  color: var(--color-gold);
   border-color: var(--color-gold);
+  font-weight: 700;
 }
 
 
@@ -1374,6 +1389,29 @@ button {
   .btn-primary-giant {
     font-size: 1.15rem;
     padding: 15px 30px;
+  }
+
+  /* Sobreescritura de subcategorías para móvil horizontal */
+  .sidebar .subcategory-tabs {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+    padding: 10px 15px !important;
+    margin-left: 0 !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border-top: 1px solid rgba(212, 175, 55, 0.05) !important;
+    gap: 8px !important;
+  }
+  
+  .sidebar .subcategory-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .sidebar .subcategory-tabs .tab-btn {
+    width: auto !important;
+    white-space: nowrap !important;
+    padding: 8px 16px !important;
+    font-size: 0.85rem !important;
   }
 }
 

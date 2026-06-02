@@ -132,6 +132,11 @@ document.addEventListener("DOMContentLoaded", () => {
         btnTab.addEventListener("click", () => switchSubcategory(sub.id));
         subcategoryNav.appendChild(btnTab);
       });
+
+      // Mover el contenedor de subcategorías al menú lateral debajo del botón activo
+      if (activeBtn) {
+        activeBtn.parentNode.insertBefore(subcategoryNav, activeBtn.nextSibling);
+      }
     } else {
       subcategoryNav.classList.add("hide");
     }
