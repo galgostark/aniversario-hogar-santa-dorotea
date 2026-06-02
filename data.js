@@ -1,5 +1,5 @@
 /**
- * BASE DE DATOS DE RECUERDOS - 38 ANIVERSARIO ASOCIACIÓN SANTA DOROTEA
+ * BASE DE DATOS DE RECUERDOS - 38 ANIVERSARIO HOGAR SANTA DOROTEA
  * 
  * INSTRUCCIONES PARA EL USUARIO:
  * 1. Para agregar tus fotos reales del Hogar (Inicios, Teatros, Voluntarios, Talleres):
@@ -77,7 +77,7 @@ const GALLERY_DATA = {
       categoryId: "inicios",
       type: "image",
       title: "Reunión Fundacional",
-      description: "Fundadores y primeras coordinadoras planificando las actividades de la Asociación Santa Dorotea en sus inicios.",
+      description: "Fundadores y primeras coordinadoras planificando las actividades del Hogar Santa Dorotea en sus inicios.",
       url: "assets/inicios_1.png",
       year: "1988"
     },
