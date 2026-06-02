@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const lightboxImg = document.getElementById("lightbox-img");
   const lightboxVideoContainer = document.getElementById("lightbox-video-container");
   const lightboxVideo = document.getElementById("lightbox-video");
+  const lightboxYoutube = document.getElementById("lightbox-youtube");
   const videoSimulator = document.getElementById("video-simulator");
   const btnSimulatorPlay = document.getElementById("btn-simulator-play");
   const cinemaCanvas = document.getElementById("cinema-reel-canvas");
@@ -232,6 +233,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Detener videos previos
     lightboxVideo.pause();
     lightboxVideo.src = "";
+    lightboxYoutube.src = "";
+    lightboxYoutube.classList.add("hide");
+    lightboxVideo.classList.add("hide");
     stopRetroSimulator();
 
     if (item.type === "image") {
@@ -242,25 +246,33 @@ document.addEventListener("DOMContentLoaded", () => {
       lightboxImg.style.display = "none";
       lightboxVideoContainer.classList.remove("hide");
       
-      // Asignar video real
-      lightboxVideo.src = item.url;
-      lightboxVideo.poster = item.thumbnailUrl || "";
+      const isYoutube = item.url.includes("youtube.com") || item.url.includes("youtu.be");
       
-      // Manejar error de carga (si el MP4 offline del usuario no se ha colocado aún)
-      lightboxVideo.onerror = () => {
-        // El video MP4 falló al cargar, activamos el espectacular simulador retro de cine antiguo
-        lightboxVideo.classList.add("hide");
-        videoSimulator.classList.remove("hide");
-        startRetroSimulator(item.title);
-      };
-
-      lightboxVideo.oncanplay = () => {
-        // El video real cargó con éxito, ocultar simulador y mostrar video HTML5
+      if (isYoutube) {
+        lightboxYoutube.classList.remove("hide");
+        lightboxYoutube.src = item.url;
+      } else {
         lightboxVideo.classList.remove("hide");
-        videoSimulator.classList.add("hide");
-        stopRetroSimulator();
-        lightboxVideo.play().catch(e => console.log("Auto-play de video bloqueado: ", e));
-      };
+        // Asignar video real
+        lightboxVideo.src = item.url;
+        lightboxVideo.poster = item.thumbnailUrl || "";
+        
+        // Manejar error de carga (si el MP4 offline del usuario no se ha colocado aún)
+        lightboxVideo.onerror = () => {
+          // El video MP4 falló al cargar, activamos el espectacular simulador retro de cine antiguo
+          lightboxVideo.classList.add("hide");
+          videoSimulator.classList.remove("hide");
+          startRetroSimulator(item.title);
+        };
+
+        lightboxVideo.oncanplay = () => {
+          // El video real cargó con éxito, ocultar simulador y mostrar video HTML5
+          lightboxVideo.classList.remove("hide");
+          videoSimulator.classList.add("hide");
+          stopRetroSimulator();
+          lightboxVideo.play().catch(e => console.log("Auto-play de video bloqueado: ", e));
+        };
+      }
     }
   };
 
@@ -268,6 +280,8 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.classList.remove("active");
     lightboxVideo.pause();
     lightboxVideo.src = "";
+    lightboxYoutube.src = "";
+    lightboxYoutube.classList.add("hide");
     stopRetroSimulator();
     stopLightboxSlideshow();
   };

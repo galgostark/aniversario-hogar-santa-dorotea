@@ -34,13 +34,13 @@ const GALLERY_DATA = {
       isSpecial: true, // Destaca visualmente por sus 50 años
       subcategories: [
         { id: "cee-todo", title: "Ver Todo" },
-        { id: "cee-construccion", title: "Construcción y Video" },
         { id: "cee-escuela-vieja", title: "Escuela Antigua" },
+        { id: "cee-construccion", title: "Construcción y Video" },
+        { id: "cee-teatros", title: "Teatro y Danzas" },
         { id: "cee-escuela", title: "Instalaciones" },
         { id: "cee-profesores", title: "Profesores y Personal" },
         { id: "cee-alumnos", title: "Alumnos" },
         { id: "cee-aniversario", title: "Aniversarios" },
-        { id: "cee-teatros", title: "Teatro y Danzas" },
         { id: "cee-otros", title: "Otros Recuerdos" }
       ]
     },
@@ -111,7 +111,7 @@ const GALLERY_DATA = {
       type: "video",
       title: "Construcción de la Escuela (Video Digitalizado)",
       description: "El valioso registro audiovisual de los cimientos, el levantamiento de muros y el esfuerzo conjunto de la comunidad para construir las aulas del Centro de Educación Especial.",
-      url: "assets/video_construccion.mp4",
+      url: "https://www.youtube.com/embed/4ffiErIGYgI",
       thumbnailUrl: "assets/cee/construccion1.jpg",
       year: "1976"
     },
