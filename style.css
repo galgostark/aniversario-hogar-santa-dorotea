@@ -582,7 +582,7 @@ button {
   border-bottom: 1px solid rgba(212, 175, 55, 0.05);
   display: flex;
   gap: 12px;
-  overflow-x: auto;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -632,7 +632,7 @@ button {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  aspect-ratio: 4 / 3;
+  height: 280px; /* Altura fija para máxima compatibilidad con Smart TVs antiguas */
   display: flex;
   flex-direction: column;
   transition: var(--transition-smooth);
@@ -1072,6 +1072,10 @@ button {
   .media-grid {
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 40px;
+  }
+  
+  .memory-card {
+    height: 380px; /* Mayor altura en pantallas Full HD y 4K */
   }
   
   .memory-card .card-details h3 {
