@@ -702,7 +702,34 @@ document.addEventListener("DOMContentLoaded", () => {
       closeLightbox();
     } else if (e.key === " ") {
       toggleLightboxSlideshow();
-      e.preventDefault();
+    }
+  });
+
+  // --- CONTROL DEL MENÚ LATERAL EN MÓVILES (DRAWER) ---
+  const mobileMenuTrigger = document.getElementById("btn-mobile-menu-trigger");
+  const sidebarDrawer = document.getElementById("sidebar-drawer");
+  const sidebarOverlay = document.getElementById("sidebar-overlay");
+
+  const closeMobileMenu = () => {
+    if (sidebarDrawer) sidebarDrawer.classList.remove("menu-open");
+    if (sidebarOverlay) sidebarOverlay.classList.remove("active");
+  };
+
+  if (mobileMenuTrigger) {
+    mobileMenuTrigger.addEventListener("click", () => {
+      if (sidebarDrawer) sidebarDrawer.classList.toggle("menu-open");
+      if (sidebarOverlay) sidebarOverlay.classList.toggle("active");
+    });
+  }
+
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener("click", closeMobileMenu);
+  }
+
+  // Cerrar menú al hacer clic en cualquier categoría del menú
+  categoryListContainer.addEventListener("click", (e) => {
+    if (e.target.closest(".btn-category") || e.target.closest(".tab-btn")) {
+      closeMobileMenu();
     }
   });
 

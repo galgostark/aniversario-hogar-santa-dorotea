@@ -53,15 +53,29 @@
     </div>
   </section>
 
+  <!-- Barra superior exclusiva para móviles -->
+  <header class="mobile-header-bar">
+    <button id="btn-mobile-menu-trigger" class="btn-mobile-toggle" aria-label="Abrir Menú">
+      <svg viewBox="0 0 24 24" width="28" height="28">
+        <path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+      </svg>
+    </button>
+    <span class="mobile-logo-text">Hogar Santa Dorotea</span>
+    <div class="logo-small mini">38</div>
+  </header>
+
+  <!-- Overlay para cerrar el menú lateral en móvil -->
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
   <!-- ================= INTERFAZ PRINCIPAL DE LA APLICACIÓN ================= -->
   <main id="app-main" class="app-layout">
     
-    <!-- BARRA LATERAL IZQUIERDA (NAVEGACIÓN GIGANTE) -->
-    <aside class="sidebar">
+    <!-- BARRA LATERAL IZQUIERDA (NAVEGACIÓN GIGANTE / MENÚ LATERAL DRAWER) -->
+    <aside class="sidebar" id="sidebar-drawer">
       <div class="sidebar-header" id="sidebar-logo-trigger">
         <div class="logo-small">38</div>
         <div class="sidebar-title-group">
-          <h2>Santa Dorotea</h2>
+          <h2>Hogar Santa Dorotea</h2>
           <p>Álbum de Recuerdos</p>
         </div>
       </div>

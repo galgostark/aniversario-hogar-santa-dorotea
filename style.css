@@ -535,18 +535,25 @@ button {
 /* Controles de Música y Presentación */
 .quick-controls {
   display: flex;
-  gap: 15px;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
 }
 
 .control-btn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
-  border-radius: 30px;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 0.85rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.control-btn svg {
+  width: 18px;
+  height: 18px;
 }
 
 .music-btn {
@@ -1136,6 +1143,12 @@ button {
   }
 }
 
+/* Ocultar barra móvil y overlay por defecto en pantallas grandes */
+.mobile-header-bar,
+.sidebar-overlay {
+  display: none;
+}
+
 /* ==========================================================================
    SOPORTE PARA PANTALLAS DE CELULARES (MÓVILES)
    ========================================================================== */
@@ -1145,88 +1158,179 @@ button {
     height: auto;
   }
 
+  /* Mostrar header móvil y overlay (dimmer) en móviles */
+  .mobile-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-darker);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 10px 15px;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    height: 60px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  .mobile-logo-text {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: var(--color-text-cream);
+  }
+
+  .logo-small.mini {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+  }
+
+  .btn-mobile-toggle {
+    background: none;
+    border: none;
+    color: var(--color-gold);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 950;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+  }
+
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
   .app-layout {
     flex-direction: column;
     height: auto;
     overflow: visible;
   }
 
-  /* Barra lateral colapsada a barra de navegación superior */
+  /* Barra lateral transformada en Drawer deslizante */
   .sidebar {
-    width: 100%;
-    height: auto;
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    border-right: none;
-    border-bottom: 1px solid var(--border-gold);
+    left: -300px; /* Escondido fuera de pantalla */
+    width: 280px;
+    height: 100vh;
+    z-index: 1000;
+    background-color: var(--bg-darker);
+    border-right: 1px solid var(--border-gold);
+    border-bottom: none;
+    box-shadow: var(--shadow-premium);
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar.menu-open {
+    left: 0; /* Desliza hacia adentro */
   }
 
   .sidebar-header {
-    padding: 15px 20px;
+    padding: 20px 15px;
     border-bottom: 1px solid rgba(212, 175, 55, 0.05);
   }
 
   .logo-small {
-    width: 40px;
-    height: 40px;
-    font-size: 1.3rem;
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
     border-radius: 8px;
   }
 
   .sidebar-title-group h2 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   .sidebar-title-group p {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 
-  /* Menú de categorías horizontal scrollable en móvil */
+  /* Menú de categorías vuelve a ser vertical dentro del Drawer */
   .category-nav {
-    flex-direction: row;
-    overflow-x: auto;
-    padding: 10px 15px;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 15px 10px;
     gap: 10px;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Esconder la barra de scroll en el nav horizontal para un look nativo app */
-  .category-nav::-webkit-scrollbar {
-    display: none;
+    width: 100%;
+    height: calc(100% - 140px);
   }
 
   .btn-category {
-    padding: 10px 16px;
-    border-radius: 20px;
-    white-space: nowrap;
-    gap: 8px;
+    padding: 14px 15px;
+    border-radius: 12px;
+    white-space: normal;
+    gap: 12px;
+    width: 100%;
   }
 
   .btn-category svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
 
   .btn-category .cat-name {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
   }
 
   .btn-category .cat-sub {
-    display: none; /* Ocultamos subtítulo para ahorrar espacio en móvil */
+    display: block; /* Volvemos a mostrar el subtítulo */
+    font-size: 0.75rem;
   }
 
   .special-nav-badge {
-    position: static;
-    margin-left: 5px;
-    font-size: 0.6rem;
-    padding: 1px 5px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+
+  /* Sobreescritura de subcategorías para móvil (lista vertical identada dentro del Drawer) */
+  .sidebar .subcategory-tabs {
+    flex-direction: column !important;
+    overflow-x: visible !important;
+    width: 100% !important;
+    padding: 8px 10px 8px 25px !important;
+    margin-left: 0 !important;
+    background-color: rgba(0, 0, 0, 0.15) !important;
+    border-top: none !important;
+    gap: 6px !important;
+  }
+  
+  .sidebar .subcategory-tabs .tab-btn {
+    width: 100% !important;
+    white-space: normal !important;
+    padding: 10px 14px !important;
+    font-size: 0.9rem !important;
+    border-radius: 8px !important;
+    text-align: left !important;
   }
 
   .sidebar-footer {
-    display: none; /* Ocultamos el pie de barra lateral en móvil */
+    display: block;
+    padding: 15px 10px;
   }
 
   /* Área de Contenido */
@@ -1236,74 +1340,74 @@ button {
   }
 
   .category-header {
-    padding: 20px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+    padding: 20px 15px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
   }
 
   .category-info {
-    max-width: 100%;
+    max-width: 65%;
   }
 
   .current-title {
-    font-size: 1.7rem;
-    margin-bottom: 6px;
+    font-size: 1.4rem;
+    margin-bottom: 4px;
   }
 
   .current-description {
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: 0.85rem;
+    line-height: 1.3;
   }
 
   /* Controles apilados o adaptados */
   .quick-controls {
-    width: 100%;
-    justify-content: space-between;
+    width: auto;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
   }
 
   .control-btn {
-    padding: 10px 18px;
-    font-size: 0.9rem;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    border-radius: 15px;
+    gap: 6px;
   }
 
-  .subcategory-tabs {
-    padding: 10px 20px;
-    gap: 8px;
-  }
-
-  .tab-btn {
-    padding: 8px 16px;
-    font-size: 0.85rem;
+  .control-btn svg {
+    width: 14px;
+    height: 14px;
   }
 
   /* Rejilla de fotos móvil (2 columnas compactas) */
   .media-grid {
-    padding: 15px;
-    gap: 15px;
+    padding: 12px;
+    gap: 12px;
     grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
   }
 
   .memory-card {
-    height: 170px; /* Tamaño compacto */
+    height: 150px; /* Tamaño compacto para que entren más en pantalla móvil */
     border-radius: 12px;
   }
 
   .card-year {
-    top: 10px;
-    left: 10px;
-    padding: 2px 8px;
-    font-size: 0.75rem;
-    border-radius: 6px;
+    top: 8px;
+    left: 8px;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    border-radius: 5px;
   }
 
   .card-details {
-    padding: 10px 12px;
+    padding: 8px 10px;
   }
 
   .card-details h3 {
-    font-size: 0.95rem;
-    margin-bottom: 3px;
+    font-size: 0.85rem;
+    margin-bottom: 2px;
   }
 
   .card-details p {
@@ -1321,33 +1425,33 @@ button {
     width: 100vw;
     max-width: 100vw;
     height: 90vh;
-    padding: 15px;
-    gap: 15px;
+    padding: 10px;
+    gap: 10px;
   }
 
   .lightbox-arrow-btn {
-    width: 50px;
-    height: 50px;
-    margin: 0 10px;
+    width: 45px;
+    height: 45px;
+    margin: 0 8px;
     border-radius: 50%;
   }
 
   .lightbox-close-btn {
-    top: 15px;
-    right: 15px;
-    width: 50px;
-    height: 50px;
+    top: 10px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
   }
 
   .lightbox-media-wrapper {
     width: 100%;
-    height: 60%;
+    height: 55%;
   }
 
   .lightbox-details {
-    padding: 15px;
+    padding: 12px;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     align-items: flex-start;
   }
 
@@ -1356,62 +1460,38 @@ button {
   }
 
   .lightbox-text h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .lightbox-text p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .slideshow-toggle-btn {
     width: 100%;
     justify-content: center;
-    padding: 10px;
-    font-size: 0.95rem;
+    padding: 8px;
+    font-size: 0.9rem;
   }
 
   /* Pantalla de Kiosco / Bienvenida móvil */
   .kiosk-content {
-    padding: 30px 20px;
-    max-width: 90%;
-    gap: 20px;
-    border-radius: 16px;
+    padding: 25px 15px;
+    max-width: 85%;
+    gap: 15px;
+    border-radius: 12px;
   }
 
   .main-title {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
 
   .tagline {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
 
   .btn-primary-giant {
-    font-size: 1.15rem;
-    padding: 15px 30px;
-  }
-
-  /* Sobreescritura de subcategorías para móvil horizontal */
-  .sidebar .subcategory-tabs {
-    flex-direction: row !important;
-    overflow-x: auto !important;
-    width: 100% !important;
-    padding: 10px 15px !important;
-    margin-left: 0 !important;
-    background-color: rgba(0, 0, 0, 0.3) !important;
-    border-top: 1px solid rgba(212, 175, 55, 0.05) !important;
-    gap: 8px !important;
-  }
-  
-  .sidebar .subcategory-tabs::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .sidebar .subcategory-tabs .tab-btn {
-    width: auto !important;
-    white-space: nowrap !important;
-    padding: 8px 16px !important;
-    font-size: 0.85rem !important;
+    font-size: 1rem;
+    padding: 12px 25px;
   }
 }
-
