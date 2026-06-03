@@ -526,6 +526,27 @@ button {
   margin-bottom: 10px;
 }
 
+.current-subtitle {
+  font-size: 1.4rem;
+  color: var(--color-gold);
+  font-family: var(--font-serif);
+  margin-top: -5px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.current-subtitle::before {
+  content: "»";
+  color: var(--color-gold-dark);
+}
+
+.current-subtitle.hide {
+  display: none !important;
+}
+
 .current-description {
   font-size: 1.1rem;
   color: var(--color-text-sub);
@@ -1354,6 +1375,12 @@ button {
   .current-title {
     font-size: 1.4rem;
     margin-bottom: 4px;
+  }
+
+  .current-subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+    margin-top: -2px;
   }
 
   .current-description {

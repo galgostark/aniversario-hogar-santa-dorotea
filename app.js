@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const categoryBadge = document.getElementById("category-badge");
   const categoryTitle = document.getElementById("category-title");
   const categoryDescription = document.getElementById("category-description");
+  const subcategoryTitle = document.getElementById("subcategory-title");
   const subcategoryNav = document.getElementById("subcategory-nav");
   const mediaGrid = document.getElementById("media-grid");
   const btnKioskReturn = document.getElementById("btn-kiosk-return");
@@ -144,8 +145,18 @@ document.addEventListener("DOMContentLoaded", () => {
       if (activeBtn) {
         activeBtn.parentNode.insertBefore(subcategoryNav, activeBtn.nextSibling);
       }
+
+      // Mostrar el subtítulo en el encabezado del contenido central
+      if (subcategoryTitle) {
+        const defaultSub = catData.subcategories.find(s => s.id === currentSubcategory);
+        subcategoryTitle.innerText = defaultSub ? defaultSub.title : "";
+        subcategoryTitle.classList.remove("hide");
+      }
     } else {
       subcategoryNav.classList.add("hide");
+      if (subcategoryTitle) {
+        subcategoryTitle.classList.add("hide");
+      }
     }
 
     // Filtrar y renderizar elementos en la rejilla
@@ -162,6 +173,13 @@ document.addEventListener("DOMContentLoaded", () => {
         tab.classList.add("active");
       }
     });
+
+    // Actualizar el subtítulo en la cabecera
+    const activeSub = GALLERY_DATA.categories.find(c => c.id === "cee").subcategories.find(s => s.id === subcategoryId);
+    if (activeSub && subcategoryTitle) {
+      subcategoryTitle.innerText = activeSub.title;
+      subcategoryTitle.classList.remove("hide");
+    }
 
     renderGrid();
   };
