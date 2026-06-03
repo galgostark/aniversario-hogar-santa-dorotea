@@ -33,7 +33,6 @@ const GALLERY_DATA = {
       icon: "school",
       isSpecial: true, // Destaca visualmente por sus 50 años
       subcategories: [
-        { id: "cee-todo", title: "Ver Todo" },
         { id: "cee-escuela-vieja", title: "Escuela Antigua" },
         { id: "cee-construccion", title: "Construcción y Video" },
         { id: "cee-teatros", title: "Teatro y Danzas" },

@@ -6,7 +6,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ================= ESTADO DE LA APLICACIÓN =================
   let currentCategory = "inicios";
-  let currentSubcategory = "cee-todo";
+  let currentSubcategory = "cee-escuela-vieja";
   let activeGridItems = [];
   let currentLightboxIndex = 0;
   
@@ -103,8 +103,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ================= 2. CONTROL DE CATEGORÍAS Y FILTROS =================
   const switchCategory = (categoryId) => {
+    // Si se hace clic en CEE y ya está activo, alternamos colapsar/expandir el submenú
+    if (categoryId === currentCategory && categoryId === "cee") {
+      subcategoryNav.classList.toggle("hide");
+      return;
+    }
+
     currentCategory = categoryId;
-    currentSubcategory = "cee-todo"; // resetear filtros especiales
+    currentSubcategory = "cee-escuela-vieja"; // resetear filtros especiales al primero por defecto
     
     // Actualizar estados visuales del menú lateral
     document.querySelectorAll(".btn-category").forEach(btn => btn.classList.remove("active"));
@@ -166,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Filtrar elementos según categoría principal y subcategoría
     activeGridItems = GALLERY_DATA.items.filter(item => {
       if (item.categoryId !== currentCategory) return false;
-      if (currentCategory === "cee" && currentSubcategory !== "cee-todo") {
+      if (currentCategory === "cee") {
         return item.subcategoryId === currentSubcategory;
       }
       return true;
