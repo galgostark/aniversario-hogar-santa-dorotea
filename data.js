@@ -34,7 +34,7 @@ const GALLERY_DATA = {
       isSpecial: true, // Destaca visualmente por sus 50 años
       subcategories: [
         { id: "cee-escuela-vieja", title: "Escuela Antigua" },
-        { id: "cee-construccion", title: "Construcción local actual" },
+        { id: "cee-construccion", title: "Construcción Local Actual" },
         { id: "cee-teatros", title: "Teatro y Danzas" },
         { id: "cee-escuela", title: "Instalaciones" },
         { id: "cee-profesores", title: "Profesores y Personal" },
