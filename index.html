@@ -168,8 +168,19 @@
           <!-- Video HTML5 real -->
           <video id="lightbox-video" controls src="" class="lightbox-video" poster=""></video>
           
-          <!-- YouTube Iframe -->
-          <iframe id="lightbox-youtube" class="lightbox-video hide" width="100%" height="100%" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <!-- YouTube Fallback Link (para cuando falla el embed o no tiene permisos de reproducción externa) -->
+          <div id="youtube-fallback-container" class="video-simulator hide">
+            <div class="simulator-overlay-controls">
+              <div class="retro-label">ENLACE EXTERNO DE YOUTUBE</div>
+              <h3 class="retro-title">Construcción de la Escuela</h3>
+              <p class="retro-desc">Por políticas de privacidad de YouTube o por ejecutarse localmente, este video debe verse externamente.</p>
+              <button id="btn-open-youtube-external" class="btn-primary-giant small-btn">
+                <svg viewBox="0 0 24 24" width="24" height="24" style="margin-right: 5px;"><path fill="currentColor" d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                <span>ABRIR EN YOUTUBE</span>
+              </button>
+              <p class="retro-desc" style="font-size: 0.8rem; margin-top: 5px;">Recuerda colocar <strong>assets/video_construccion.mp4</strong> para reproducirlo aquí directamente sin internet.</p>
+            </div>
+          </div>
           
           <!-- Simulador de Cine Antiguo (si el video MP4 local no existe aún) -->
           <div id="video-simulator" class="video-simulator hide">

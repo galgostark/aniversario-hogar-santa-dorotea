@@ -38,7 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const lightboxImg = document.getElementById("lightbox-img");
   const lightboxVideoContainer = document.getElementById("lightbox-video-container");
   const lightboxVideo = document.getElementById("lightbox-video");
-  const lightboxYoutube = document.getElementById("lightbox-youtube");
+  const youtubeFallbackContainer = document.getElementById("youtube-fallback-container");
+  const btnOpenYoutubeExternal = document.getElementById("btn-open-youtube-external");
   const videoSimulator = document.getElementById("video-simulator");
   const btnSimulatorPlay = document.getElementById("btn-simulator-play");
   const cinemaCanvas = document.getElementById("cinema-reel-canvas");
@@ -244,8 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Detener videos previos
     lightboxVideo.pause();
     lightboxVideo.src = "";
-    lightboxYoutube.src = "";
-    lightboxYoutube.classList.add("hide");
+    if (youtubeFallbackContainer) youtubeFallbackContainer.classList.add("hide");
     lightboxVideo.classList.add("hide");
     stopRetroSimulator();
 
@@ -260,8 +260,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const isYoutube = item.url.includes("youtube.com") || item.url.includes("youtu.be");
       
       if (isYoutube) {
-        lightboxYoutube.classList.remove("hide");
-        lightboxYoutube.src = item.url;
+        if (youtubeFallbackContainer) youtubeFallbackContainer.classList.remove("hide");
+        if (btnOpenYoutubeExternal) {
+          btnOpenYoutubeExternal.onclick = (e) => {
+            e.preventDefault();
+            // Convertir URL de embed a URL estándar de YouTube para verlo en web/app
+            const watchUrl = item.url.replace("embed/", "watch?v=");
+            window.open(watchUrl, "_blank");
+          };
+        }
       } else {
         lightboxVideo.classList.remove("hide");
         // Asignar video real
@@ -291,8 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.classList.remove("active");
     lightboxVideo.pause();
     lightboxVideo.src = "";
-    lightboxYoutube.src = "";
-    lightboxYoutube.classList.add("hide");
+    if (youtubeFallbackContainer) youtubeFallbackContainer.classList.add("hide");
     stopRetroSimulator();
     stopLightboxSlideshow();
   };
