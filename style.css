@@ -530,8 +530,8 @@ button {
   font-size: 1.4rem;
   color: var(--color-gold);
   font-family: var(--font-serif);
-  margin-top: -5px;
-  margin-bottom: 15px;
+  margin-top: 15px; /* Margen superior porque ahora se ubica debajo de la descripción */
+  margin-bottom: 5px;
   font-weight: bold;
   display: inline-flex;
   align-items: center;
