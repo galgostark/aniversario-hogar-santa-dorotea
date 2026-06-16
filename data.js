@@ -1,5 +1,5 @@
 /**
- * BASE DE DATOS DE RECUERDOS - 38 ANIVERSARIO HOGAR SANTA DOROTEA
+ * BASE DE DATOS DE RECUERDOS - 36 ANIVERSARIO HOGAR SANTA DOROTEA
  * 
  * INSTRUCCIONES PARA EL USUARIO:
  * 1. Para agregar tus fotos reales del Hogar (Inicios, Teatros, Voluntarios, Talleres):
@@ -47,7 +47,7 @@ const GALLERY_DATA = {
       id: "voluntarios",
       title: "Voluntarios",
       subtitle: "Corazones Solidarios",
-      description: "Un merecido homenaje a todas las personas, benefactores y voluntarios locales e internacionales que han entregado su tiempo, energía y amor para apoyar la labor de la Asociación a lo largo de estos 38 años.",
+      description: "Un merecido homenaje a todas las personas, benefactores y voluntarios locales e internacionales que han entregado su tiempo, energía y amor para apoyar la labor de la Asociación a lo largo de estos 36 años.",
       icon: "heart"
     },
     {

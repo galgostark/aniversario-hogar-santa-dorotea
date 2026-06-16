@@ -1,5 +1,5 @@
 /**
- * CEREBRO DE LA APLICACIÓN - 38° ANIVERSARIO SANTA DOROTEA
+ * CEREBRO DE LA APLICACIÓN - 36° ANIVERSARIO SANTA DOROTEA
  * Lógica de navegación, modo kiosco, lightbox y música generativa (100% Offline)
  */
 
